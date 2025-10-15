@@ -2,6 +2,7 @@ name: CI/CD Cadastro de Pessoas
 
 env:
   AZURE_WEBAPP_NAME: "cadastrodepessoasapi"
+  AZURE_WEBAPP_FRONTEND_NAME: "cadastrodepessoas-fe"
 
 on:
   push:
