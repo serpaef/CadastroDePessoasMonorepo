@@ -1,3 +1,7 @@
+using backend.Domain.Interfaces;
+using backend.Domain.Services;
+using backend.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend
 {
@@ -6,6 +10,25 @@ namespace backend
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddScoped<IUserServices, UserServices>();
+
+            var env = builder.Environment;
+
+            Console.WriteLine(env.EnvironmentName);
+
+            //if (env.IsDevelopment())
+            //{
+            //    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            //        options.UseInMemoryDatabase("DevDatabase"));
+            //}
+            //else
+            //{
+                var connectionString = builder.Configuration.GetConnectionString("MySql");
+
+                builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            //}
 
             // Add services to the container.
 
