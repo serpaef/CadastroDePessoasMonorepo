@@ -2,6 +2,7 @@
 using backend.Domain.Exceptions;
 using backend.Domain.Interfaces;
 using backend.Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -21,6 +22,7 @@ namespace backend.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll(
             [FromQuery] int page = 1,
             [FromQuery] string? nome = null,
@@ -32,6 +34,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> GetById(int id)
         {
             var pessoa = await _pessoaServices.GetById(id);
@@ -39,6 +42,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("cpf/{cpf}")]
+        [Authorize]
         public async Task<IActionResult> GetByCpf(string cpf)
         {
             var pessoa = await _pessoaServices.GetByCpf(cpf);
@@ -46,6 +50,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("email/{email}")]
+        [Authorize]
         public async Task<IActionResult> GetByEmail(string email)
         {
             var pessoa = await _pessoaServices.GetByEmail(email);
@@ -53,6 +58,7 @@ namespace backend.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             await _pessoaServices.Delete(id);
@@ -60,6 +66,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] Pessoa pessoa)
         {
             var createdPessoa = await _pessoaServices.Create(pessoa);
@@ -67,6 +74,7 @@ namespace backend.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Update(int id, [FromBody] Pessoa pessoa)
         {
             if (pessoa.Id == 0)
@@ -78,7 +86,5 @@ namespace backend.Controllers
             var updatedPessoa = await _pessoaServices.Update(pessoa);
             return Ok(updatedPessoa);
         }
-
-
     }
 }
