@@ -104,7 +104,7 @@ namespace backend
 
             var app = builder.Build();
 
-            app.useCors("AllowAll"); //olá avaliadores, liberado para acessarem, mas em produção real seria necessario configurar policy para os endereços e métodos somente dos consumidores oficiais da aplicação
+            app.UseCors("AllowAll"); //olá avaliadores, liberado para acessarem, mas em produção real seria necessario configurar policy para os endereços e métodos somente dos consumidores oficiais da aplicação
 
             // Configure the HTTP request pipeline.
             app.UseSwagger();
