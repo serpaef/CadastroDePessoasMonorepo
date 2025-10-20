@@ -9,5 +9,7 @@ namespace backend.Domain.Interfaces
         User? GetUser(LoginDTO loginDTO);
 
         UserView GetUserView(User user);
+
+        string GenerateTokenJwt(UserView user);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using backend.Domain.DTO;
+using backend.Domain.Exceptions;
 using backend.Domain.Interfaces;
 using backend.Domain.ModelViews;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -19,20 +21,16 @@ namespace backend.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Login(LoginDTO loginDto)
         {
-            _logger.LogInformation("/POST Login recebido" +  loginDto);
-
             var user = _userServices.GetUser(loginDto);
-
-            if (user == null)
-            {
-                return Unauthorized();
-            }
 
             var userView = _userServices.GetUserView(user);
 
-            return Ok(userView);
+            var token = _userServices.GenerateTokenJwt(userView);
+
+            return Ok(new { token });
         }
     }
 
