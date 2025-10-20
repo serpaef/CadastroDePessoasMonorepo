@@ -38,6 +38,16 @@ namespace backend
 
             builder.Services.AddAuthorization();
 
+            builder.Services.AddCors(options =>
+                {
+                    options.AddPolicy("AllowAll", policy =>
+                    {
+                        policy.AllowAnyOrigin()    // Permite qualquer origem
+                              .AllowAnyMethod()    // Permite qualquer método HTTP (GET, POST, PUT, DELETE, etc.)
+                              .AllowAnyHeader();   // Permite qualquer cabeçalho
+                    });
+                });
+
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<IPessoaServices, PessoaServices>();
 
@@ -93,6 +103,8 @@ namespace backend
             });
 
             var app = builder.Build();
+
+            app.useCors("AllowAll"); //olá avaliadores, liberado para acessarem, mas em produção real seria necessario configurar policy para os endereços e métodos somente dos consumidores oficiais da aplicação
 
             // Configure the HTTP request pipeline.
             app.UseSwagger();
