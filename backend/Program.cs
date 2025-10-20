@@ -1,5 +1,6 @@
 using backend.Domain.Interfaces;
 using backend.Domain.Middlewares;
+using backend.Domain.ModelViews;
 using backend.Domain.Services;
 using backend.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,8 @@ namespace backend
             app.UseAuthorization();
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
+
+            app.MapGet("/", () => Results.Json( new Home() ) );
 
             app.MapControllers();
 
