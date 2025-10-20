@@ -568,3 +568,4 @@ backend/appsettings.json
 frontend/.env
 appsettings.json
 .env
+/backend/appsettings.json
