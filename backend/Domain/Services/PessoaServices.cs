@@ -5,6 +5,7 @@ using backend.Domain.Helpers;
 using backend.Domain.Interfaces;
 using backend.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace backend.Domain.Services
 {
@@ -33,6 +34,12 @@ namespace backend.Domain.Services
 
                 if (!string.IsNullOrEmpty(pessoa.Email) && !ValidadorDeEmail.Validar(pessoa.Email))
                     throw new BadRequestException("Email inválido");
+
+                bool emailExists = await _context.Pessoas.AnyAsync(p => p.Email == pessoa.Email);
+                if (!string.IsNullOrEmpty(pessoa.Email) && emailExists)
+                {
+                    throw new BadRequestException("Email já existe na base de dados.");
+                }
 
                 _context.Pessoas.Add(pessoa);
                 await _context.SaveChangesAsync();
@@ -253,16 +260,22 @@ namespace backend.Domain.Services
                 if (!string.IsNullOrEmpty(pessoa.Email) && !ValidadorDeEmail.Validar(pessoa.Email))
                     throw new BadRequestException("Email inválido");
 
+                bool emailExists = await _context.Pessoas.AnyAsync(p => p.Email == pessoa.Email);
+                if (!string.IsNullOrEmpty(pessoa.Email) && emailExists)
+                {
+                    throw new BadRequestException("Email já existe na base de dados.");
+                }
+
                 existingPessoa.Nome = pessoa.Nome;
                 existingPessoa.Cpf = pessoa.Cpf;
                 existingPessoa.DataNascimento = pessoa.DataNascimento;
                 
-                if ( pessoa.Sexo != null)
+                if (!string.IsNullOrEmpty(pessoa.Sexo))
                 {
                     existingPessoa.Sexo = pessoa.Sexo;
                 }
                 
-                if (pessoa.Email != null)
+                if (!string.IsNullOrEmpty(pessoa.Email))
                 {
                     existingPessoa.Email = pessoa.Email;
                 }
