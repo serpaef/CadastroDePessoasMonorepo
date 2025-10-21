@@ -34,7 +34,7 @@ export default function PessoaForm() {
     try {
       await post(`${import.meta.env.VITE_API_URL}/v1/Pessoa`, formData, navigate);
       alert("Pessoa cadastrada com sucesso!");
-      navigate("/"); // redireciona para home após cadastro
+      navigate("/home"); // redireciona para home após cadastro
     } catch (err) {
       console.error(err);
       setError("Erro ao cadastrar pessoa.");
