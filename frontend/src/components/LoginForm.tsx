@@ -6,12 +6,12 @@ interface LoginFormProps {
 }
 
 export default function LoginForm({ onSubmit }: LoginFormProps) {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [usuario, setUsuario] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    onSubmit({ email, password });
+    onSubmit({ usuario, senha });
   }
 
   return (
@@ -24,8 +24,8 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
       <input
         type="email"
         placeholder="E-mail"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={usuario}
+        onChange={(e) => setUsuario(e.target.value)}
         required
         className="border rounded p-2"
       />
@@ -33,8 +33,8 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
       <input
         type="password"
         placeholder="Senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
         required
         className="border rounded p-2"
       />
