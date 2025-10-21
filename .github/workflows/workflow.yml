@@ -49,6 +49,8 @@ jobs:
           push: true
           tags: ghcr.io/${{ env.REPO }}-frontend:${{ github.sha }}
           file: ./frontend/Dockerfile
+          build-args: |
+            VITE_API_URL=${{ secrets.VITE_API_URL }}
 
   deploy-backend:
     runs-on: ubuntu-latest

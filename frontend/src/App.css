@@ -1,42 +1,117 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* --------------------------
+   Reset e base tipográfica
+--------------------------- */
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #213547;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-width: 320px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+* {
+  box-sizing: border-box;
+}
+
+/* --------------------------
+   Links e botões básicos
+--------------------------- */
+
+a {
+  color: #646cff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #e6e6e6;
+}
+
+/* --------------------------
+   Elementos padrão
+--------------------------- */
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* --------------------------
+   Classe utilitária de layout
+--------------------------- */
+
+/* Container padrão para centralizar e preencher a viewport */
+.page-container {
+  min-height: 100vh;              /* ocupa altura total da tela */
+  display: flex;                  /* facilita centralização */
+  justify-content: center;        /* centraliza horizontalmente */
+  align-items: center;            /* centraliza verticalmente */
+  padding: 1rem;                  /* espaço interno padrão */
+  background-color: #f5f5f5;      /* cor de fundo neutra */
+}
+
+/* Variante para layouts de página com cabeçalho/rodapé fixo */
+.page-container.column {
+  flex-direction: column;
+  justify-content: flex-start;    /* alinha conteúdo no topo */
+  align-items: stretch;           /* largura total */
+}
+
+/* --------------------------
+   Modo escuro opcional
+--------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
   }
-  to {
-    transform: rotate(360deg);
+
+  .page-container {
+    background-color: #1a1a1a;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  button {
+    background-color: #1a1a1a;
+    color: #ffffff;
   }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  button:hover {
+    background-color: #333333;
+  }
 }
