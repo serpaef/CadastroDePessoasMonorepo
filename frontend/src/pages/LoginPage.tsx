@@ -22,11 +22,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div>
-        <LoginForm onSubmit={handleLogin} />
-        {error && <p className="text-red-600 text-center mt-2">{error}</p>}
-      </div>
+    <div className="page-container">
+      <LoginForm onSubmit={handleLogin} />
+      {error && <p className="text-red-600 text-center mt-2">{error}</p>}
     </div>
   );
 }

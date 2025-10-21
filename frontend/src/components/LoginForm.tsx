@@ -17,7 +17,7 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 max-w-sm mx-auto bg-white p-6 rounded-lg shadow"
+      className="w-full max-w-sm flex flex-col items-stretch gap-4 bg-white p-6 rounded-lg shadow-lg"
     >
       <h1 className="text-2xl font-bold text-center mb-2">Login</h1>
 
